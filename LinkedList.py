@@ -65,24 +65,34 @@ class LinkedList:
 
 ### !!! STACK CLASS FOR CHALLENGE ASSIGNMENT !!! ###
 class Stack(LinkedList):
+    # OVERRIDE addMultipleNodes METHOD FOR STACK DATA STRUCTURE
+    def addMultipleNodes(self, values):
+        for value in values:
+            self.push(value)
+
     def push(self, val):
-        node = Node(val, self.head)
-        self.head = node
+        if self.head is None:
+            self.tail = self.head = Node(val)
+        else:
+            node = Node(val, self.head)
+            self.head = node
+        return self.head
     
     def pop(self) -> Node:
         if self.tail is None:
-            raise Exception
+            raise EmptyLinkedListException
         pop_node = self.head
         self.head = pop_node.next
         return pop_node
     
     def max(self):
         if self.tail is None:
-            raise Exception
+            raise EmptyLinkedListException
         max_value = self.head.value
         for node in self:
             if node.value > max_value:
                 max_value = node.value
+        return max_value
 ### !!! STACK CLASS FOR CHALLENGE ASSIGNMENT !!! ###
 
 class DoublyLinkedList (LinkedList):
@@ -102,3 +112,8 @@ class DoublyLinkedList (LinkedList):
             self.head = Node(value, current_head)
             current_head.prev = self.head
         return self.head
+
+class EmptyLinkedListException(Exception):
+    def __init__(self):
+        self.message = "\nEmpty LinkedList. Could not perform action.\nTry again with non-empty LinkedList.\n"
+        super().__init__(self.message)

@@ -15,7 +15,7 @@ Weekly Coding Challenge(s)
 Each method should run in constant time.
 
 '''
-from LinkedList import Node, LinkedList
+from LinkedList import LinkedList
 
 def intersection(ll1: LinkedList, ll2: LinkedList):
     '''
