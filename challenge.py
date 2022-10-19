@@ -25,12 +25,22 @@ def intersection(ll1: LinkedList, ll2: LinkedList):
     returns the intersecting node. If not, returns None.
 
     '''
-    for k in ll1:
-        for j in ll2:
-            if k.next == None or j.next == None:
-                break
-            if k.next.value == j.next.value:
-                return k
+    diff = abs(len(ll1) - len(ll2))
+
+    k = ll1.head
+    j = ll2.head
+    if len(ll1) > len(ll2):
+        for i in range(diff):
+            k = k.next
+    else:
+        for i in range(diff):
+            j = j.next
+    while k is not None and j is not None:
+        if k.value == j.value and k.next.value == j.next.value:
+            return k
+        k = k.next
+        j = j.next
+
     return None
 
 ### !!! STACK CLASS IN LinkedList.py FILE !!! ###
